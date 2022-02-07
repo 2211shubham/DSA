@@ -1,14 +1,15 @@
-class Solution {
-public:
-    int kthGrammar(int n, int k) {
-        if(n==1 &&k==1)return 0;
-        
-        int mid = pow(2,n-1)/2;
-        
-        if(k <= mid){
-            return kthGrammar(n-1,k);
-        }else{
-            return !kthGrammar(n-1,k-mid);
+class Solution{
+    public:
+    // You need to complete this function
+
+    // avoid space at the starting of the string in "move disk....."
+    long long toh(int N, int from, int to, int aux) {
+        if(N == 1){
+            cout<<"move disk 1 from rod "<<from<<" to rod "<<to<<endl;
+            return 1;
         }
+        toh(N-1,from, aux, to);
+        cout<<"move disk "<<N<<" from rod "<<from<<" to rod "<<to<<endl;
+        toh(N-1,aux,to,from);
+        return pow(2,N)-1;
     }
-};
